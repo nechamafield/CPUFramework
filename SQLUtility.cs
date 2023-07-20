@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace CPUFramework
 {
@@ -21,6 +22,8 @@ namespace CPUFramework
             var dr = cmd.ExecuteReader();
             dt.Load(dr);
             return dt;
+
+            //CancellationToken you please call me
         }
     }
 }
