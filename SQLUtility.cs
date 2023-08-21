@@ -32,23 +32,38 @@ namespace CPUFramework
             GetDataTable(sqlstatement);
         }
 
-        private static void SetAllColumnsAllowNull(DataTable dt)
+        public static int GetFirstColumnFirstRowValue(string sql)
         {
-            foreach(DataColumn c in dt.Columns)
+            int n = 0;
+
+            DataTable dt = GetDataTable(sql);
+            if (dt.Rows.Count > 0 && dt.Columns.Count > 0)
             {
-                c.AllowDBNull = true;
+                if (dt.Rows[0][0] != DBNull.Value)
+                {
+                    int.TryParse(dt.Rows[0][0].ToString(), out n);
+                }
             }
+            return n;
         }
 
-        public static void DebugPrintDataTable(DataTable dt)
-        {
-            foreach(DataRow r in dt.Rows)
+            private static void SetAllColumnsAllowNull(DataTable dt)
             {
-                foreach(DataColumn c in dt.Columns)
+                foreach (DataColumn c in dt.Columns)
                 {
-                    Debug.Print(c.ColumnName + " = " + r[c.ColumnName].ToString());
+                    c.AllowDBNull = true;
+                }
+            }
+
+            public static void DebugPrintDataTable(DataTable dt)
+            {
+                foreach (DataRow r in dt.Rows)
+                {
+                    foreach (DataColumn c in dt.Columns)
+                    {
+                        Debug.Print(c.ColumnName + " = " + r[c.ColumnName].ToString());
+                    }
                 }
             }
         }
     }
-}
