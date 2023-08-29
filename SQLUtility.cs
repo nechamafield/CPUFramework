@@ -98,7 +98,6 @@ namespace CPUFramework
             public static int GetFirstColumnFirstRowValue(string sql)
             {
                 int n = 0;
-
                 DataTable dt = GetDataTable(sql);
                 if (dt.Rows.Count > 0 && dt.Columns.Count > 0)
                 {
