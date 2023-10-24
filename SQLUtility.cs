@@ -69,7 +69,6 @@ namespace CPUFramework
 
         private static DataTable DoExecuteSql (SqlCommand cmd, bool loadtable)
         {
-
             DataTable dt = new();
             using (SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString))
             {
